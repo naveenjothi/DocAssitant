@@ -43,12 +43,15 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_marginBottom="10dp"
+            android:id="@+id/arrived_btn_layout"
+            android:visibility="visible"
             android:layout_alignParentBottom="true"
             android:layout_height="wrap_content">
             <Button
                 android:layout_width="match_parent"
                 android:text="Arrived"
                 android:textSize="18sp"
+                android:id="@+id/arrived_btn"
                 android:textColor="@android:color/white"
                 android:background="@drawable/arrived_layoutborder"
                 android:layout_marginRight="60dp"
@@ -56,5 +59,63 @@
                 android:layout_height="50dp">
             </Button>
         </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone"
+            android:id="@+id/saved_btn_layout"
+            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="match_parent"
+                android:text="Saved"
+                android:textSize="18sp"
+                android:id="@+id/saved_btn"
+                android:textColor="@android:color/white"
+                android:background="@drawable/arrived_layoutborder"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_height="50dp">
+            </Button>
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/modal_success"
+        android:layout_centerInParent="true"
+        android:background="@drawable/category_layout_border"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/congrats_txt"
+            android:layout_marginTop="15dp"
+            android:text="Congratulations"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp"
+            android:layout_height="wrap_content">
+        </TextView>
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_marginTop="35dp"
+            android:layout_below="@id/congrats_txt"
+            android:layout_marginRight="100dp"
+            android:id="@+id/winner_img"
+            android:layout_marginLeft="100dp"
+            android:src="@drawable/ic_winner"
+            android:layout_marginBottom="35dp"
+            android:layout_height="70dp">
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="You saved a Person"
+            android:layout_below="@id/winner_img"
+            android:layout_marginBottom="35dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="17sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_height="wrap_content">
+        </TextView>
     </RelativeLayout>
 </RelativeLayout>

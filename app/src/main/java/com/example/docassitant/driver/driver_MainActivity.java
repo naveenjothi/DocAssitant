@@ -208,11 +208,13 @@ public class driver_MainActivity extends AppCompatActivity {
                                                 dref.child(driver_id).child("Accept_status").setValue(1);
                                                 dref.child(driver_id).child("Decline_status").setValue(0);
                                                 dref.child(driver_id).child("Patient_id").setValue(Integer.parseInt(user_id));
+                                                driver_main_layout.setVisibility(View.VISIBLE);
+                                                driver_request_layout.setVisibility(View.GONE);
                                                 Intent i=new Intent(driver_MainActivity.this, MapsActivity.class);
+                                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 i.putExtra("user_id",user_id);
                                                 startActivity(i);
                                             }
-
                                             @Override
                                             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -278,8 +280,8 @@ public class driver_MainActivity extends AppCompatActivity {
     }
 
     private void changefirebasedata() {
-        reference = FirebaseDatabase.getInstance().getReference().child("Drivers");
-        reference.addValueEventListener(new ValueEventListener() {
+        dref = FirebaseDatabase.getInstance().getReference().child("Drivers");
+        dref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
@@ -288,11 +290,11 @@ public class driver_MainActivity extends AppCompatActivity {
                         if (user_email.equals(email)){
                             driver_id=snap.getKey();
                             if(isOnline){
-                                reference.child(snap.getKey()).child("status").setValue(1);
+                                dref.child(driver_id).child("status").setValue(1);
                                 online_txt.setText("Online");
                             }else {
                                 online_txt.setText("Offline");
-                                reference.child(snap.getKey()).child("status").setValue(0);
+                                dref.child(driver_id).child("status").setValue(0);
                             }
                         }
                     }
@@ -310,8 +312,8 @@ public class driver_MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        reference=FirebaseDatabase.getInstance().getReference().child("Drivers");
-        reference.addValueEventListener(new ValueEventListener() {
+        driver_online_ref=FirebaseDatabase.getInstance().getReference().child("Drivers");
+        driver_online_ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){

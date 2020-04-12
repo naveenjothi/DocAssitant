@@ -21,15 +21,19 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.docassitant.LoginActivity;
 import com.example.docassitant.MainActivity;
 import com.example.docassitant.R;
+import com.example.docassitant.SplashActivity;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -49,6 +53,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -86,9 +91,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private int count=0;
     private Toolbar mTopToolbar;
     private GoogleMap mMap1;
-    private DatabaseReference patientreference;
     private String user_id;
     private double cus_lat,cus_lng;
+    private Button arrived_btn,saved_btn;
+    private DatabaseReference dref,driver_ref,cus_ref,patientreference;
+    private String driver_id;
+    private RelativeLayout modallayout,arrived_layout,saved_layout;
+    private int SPLASH_TIME_OUT=2000;
 
     @RequiresApi(api = Build.VERSION_CODES.P)
 
@@ -114,6 +123,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
         locationManager=(LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        arrived_btn=(Button)findViewById(R.id.arrived_btn);
+        saved_btn=(Button)findViewById(R.id.saved_btn);
+        modallayout=(RelativeLayout)findViewById(R.id.modal_success);
+        arrived_layout=(RelativeLayout)findViewById(R.id.arrived_btn_layout);
+        saved_layout=(RelativeLayout)findViewById(R.id.saved_btn_layout);
         //using fusedlocation provider to get the current location
         fusedLocationProviderClient=LocationServices.getFusedLocationProviderClient(this);
         if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
@@ -122,7 +136,107 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
            getLocation();
         }
         getvalues();
+        arrived_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                driver_ref=FirebaseDatabase.getInstance().getReference().child("Drivers");
+                driver_ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            for(DataSnapshot snap:dataSnapshot.getChildren()){
+                                if(snap.child("Patient_id").getValue().toString().equals(user_id)){
+                                    driver_id=snap.getKey();
+                                    System.out.println("driver_id"+driver_id);
+                                    if(driver_id!=null){
+                                        if(driver_id!=""){
+                                            driver_ref.child(driver_id).child("Accept_status").setValue(2).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if(task.isSuccessful()){
+                                                        arrived_layout.setVisibility(View.GONE);
+                                                        saved_layout.setVisibility(View.VISIBLE);
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    }
+                                }
+                            }
 
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+                /*driver_ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });*/
+
+            }
+        });
+        saved_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dref=FirebaseDatabase.getInstance().getReference().child("Drivers");
+                dref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists()){
+                            dref.child(driver_id).child("Accept_status").setValue(0);
+                            dref.child(driver_id).child("Patient_id").setValue(0).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    cus_ref=FirebaseDatabase.getInstance().getReference().child("Users");
+                                    cus_ref.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshots) {
+                                            if(dataSnapshots.exists()){
+                                                cus_ref.child(user_id).child("emergency_status").setValue(0).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        modallayout.setVisibility(View.VISIBLE);
+                                                        new Handler().postDelayed(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                modallayout.setVisibility(View.GONE);
+                                                                Intent i= new Intent(MapsActivity.this,driver_MainActivity.class);
+                                                                startActivity(i);
+                                                                finish();
+                                                            }
+                                                        },SPLASH_TIME_OUT);
+                                                    }
+                                                });
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
     }
 
     private void getvalues() {
@@ -230,10 +344,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
            mMap.addMarker(markerOptions);
            if(cus_lat !=0 && cus_lng!=0){
-               final MarkerOptions options=new MarkerOptions().position(new LatLng(cus_lat,cus_lng)).title("Save me");
-               mMap1.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-               mMap1.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-               mMap1.addMarker(options);
+               Marker m2 = mMap.addMarker(new MarkerOptions()
+                       .position(new LatLng(cus_lat,cus_lng))
+                       .anchor(0.5f, 0.5f)
+                       .title("Save me")
+                       .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
+//               final MarkerOptions options=new MarkerOptions().position(new LatLng(cus_lat,cus_lng)).title("Save me");
+//               mMap1.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+//               mMap1.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+//               mMap1.addMarker(options);
                LatLng origin=new LatLng(mlocation.getLatitude(),mlocation.getLongitude());
                LatLng dest=new LatLng(cus_lat,cus_lng);
                String url=getUrl(origin,dest);
