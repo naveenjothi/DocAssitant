@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".MainActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="180dp"
+            android:id="@+id/imageview"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_health"
+            android:layout_height="180dp">
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="DocAssitant"
+            android:layout_below="@+id/imageview"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/white"
+            android:textSize="35dp"
+            android:layout_height="wrap_content">
+        </TextView>
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/dvr_login"
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:textAllCaps="false"
+            android:text="Driver Login"
+            android:padding="17dp"
+            android:textColor="@android:color/white"
+            android:textSize="25dp"
+            android:background="@color/colorPrimaryDark">
+        </Button>
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/usr_login"
+            android:background="@color/colorPrimaryDark"
+            android:layout_alignParentBottom="true"
+            android:padding="17dp"
+            android:textAllCaps="false"
+            android:textSize="25dp"
+            android:textColor="@android:color/white"
+            android:layout_margin="20dp"
+            android:text="User Login"
+            android:layout_alignParentRight="true">
+
+        </Button>
+    </RelativeLayout>
+</RelativeLayout>

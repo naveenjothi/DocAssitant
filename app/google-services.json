@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "824600281830",
+    "firebase_url": "https://docassitant-dee21.firebaseio.com",
+    "project_id": "docassitant-dee21",
+    "storage_bucket": "docassitant-dee21.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824600281830:android:f160bc77490975dd9ef127",
+        "android_client_info": {
+          "package_name": "com.example.docassitant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824600281830-45p4s681enai1mikgqj1tduatfvg3spo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.docassitant",
+            "certificate_hash": "33574571e24c60ffbfb8ade39fd0dcd9f19035cf"
+          }
+        },
+        {
+          "client_id": "824600281830-hf8lobfu07uvrkeiie22qbldnlsbkl0e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzMRiWX150hZkMWIVmvqGTd5hpX0yNJzw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824600281830-hf8lobfu07uvrkeiie22qbldnlsbkl0e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

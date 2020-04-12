@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">DocAssitant</string>
+    <string name="they_care_for_whole_family_including_children_adults_and_elderly">They care for whole family including children,adults and elderly .They do routine checkups and screening tests give you flu and immunization shots and manage diabetes and other ongoing medication condition.</string>
+    <string name="family_n_outpatient_doctors">Family  /Outpatient doctors</string>
+    <string name="cardiology_doctors">Cardiology Doctors</string>
+    <string name="they_are_experts_on_heart">They are experts on heart and blood vessels.You can see them if you have any kind of heart problems.They are easy at handling heart attack,high blood pressure,or an irregular heart beat </string>
+    <string name="allergist_immunilogists">Allergist / Immunilogists</string>
+    <string name="they_treat_immune_system">They treat immune system disorders Such as asthma,eczema,food allergies,insect sting alergies and some autoimmune diseases.</string>
+    <string name="have_problems_with_your_skin">Have Problems with your skin,hair,nails? Do you have moles scars,acne or skin allergies ? Dermatologist can help. </string>
+    <string name="dermatologist">Dermatologist</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
