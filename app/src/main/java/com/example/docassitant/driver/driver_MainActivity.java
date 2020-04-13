@@ -168,6 +168,9 @@ public class driver_MainActivity extends AppCompatActivity {
 
                                 }
                             });
+                        }else{
+                            driver_main_layout.setVisibility(View.VISIBLE);
+                            driver_request_layout.setVisibility(View.GONE);
                         }
                     }
                 }
