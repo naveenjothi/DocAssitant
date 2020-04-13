@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "824600281830-d8k3d2d63j4ds9qpr0dg6tqopv01i49b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.docassitant",
+            "certificate_hash": "c3ca05c4c6b258d46d99cc52c75537a762a4b7ee"
+          }
+        },
+        {
           "client_id": "824600281830-45p4s681enai1mikgqj1tduatfvg3spo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

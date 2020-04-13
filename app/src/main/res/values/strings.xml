@@ -9,4 +9,9 @@
     <string name="have_problems_with_your_skin">Have Problems with your skin,hair,nails? Do you have moles scars,acne or skin allergies ? Dermatologist can help. </string>
     <string name="dermatologist">Dermatologist</string>
     <string name="title_activity_maps">Map</string>
+    <string name="nameerror">Enter valid name</string>
+    <string name="mobileerror">Enter valid phonenumber</string>
+    <string name="emailerror">Enter valid email</string>
+    <string name="passworderror">"Password should be atleast 8 characters "</string>
+    <string name="commonerror">Enter the input</string>
 </resources>

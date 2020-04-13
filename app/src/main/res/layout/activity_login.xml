@@ -40,7 +40,6 @@
         android:layout_marginBottom="10dp"
         android:layout_above="@+id/signin_layout"
         android:layout_height="120dp">
-
     </ImageView>
 
     <RelativeLayout
@@ -126,7 +125,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/password_layout"
-        android:elevation="10dp"
+        android:elevation="20dp"
         android:layout_marginRight="40dp"
         android:background="@drawable/btn_border"
         android:layout_marginLeft="40dp">
