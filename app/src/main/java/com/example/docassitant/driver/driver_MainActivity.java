@@ -192,39 +192,28 @@ public class driver_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 reference = FirebaseDatabase.getInstance().getReference().child("Users");
-                reference.addValueEventListener(new ValueEventListener() {
+                reference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists()){
                             for(final DataSnapshot snap:dataSnapshot.getChildren()){
                                 reference.child(user_id).child("emergency_status").setValue(2).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()){
-                                        dref = FirebaseDatabase.getInstance().getReference().child("Drivers");
-                                        dref.addValueEventListener(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                dref.child(driver_id).child("Accept_status").setValue(1);
-                                                dref.child(driver_id).child("Decline_status").setValue(0);
-                                                dref.child(driver_id).child("Patient_id").setValue(Integer.parseInt(user_id));
-                                                driver_main_layout.setVisibility(View.VISIBLE);
-                                                driver_request_layout.setVisibility(View.GONE);
-                                                Intent i=new Intent(driver_MainActivity.this, MapsActivity.class);
-                                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                i.putExtra("user_id",user_id);
-                                                startActivity(i);
-                                            }
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                            }
-                                        });
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            dref = FirebaseDatabase.getInstance().getReference().child("Drivers");
+                                            dref.child(driver_id).child("Accept_status").setValue(1);
+                                            dref.child(driver_id).child("Decline_status").setValue(0);
+                                            dref.child(driver_id).child("Patient_id").setValue(Integer.parseInt(user_id));
+                                            driver_main_layout.setVisibility(View.VISIBLE);
+                                            driver_request_layout.setVisibility(View.GONE);
+                                            Intent i=new Intent(driver_MainActivity.this, MapsActivity.class);
+                                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            i.putExtra("user_id",user_id);
+                                            startActivity(i);
+                                        }
                                     }
-                                }
-                            });
-
-
+                                });
                             }
                         }
                     }

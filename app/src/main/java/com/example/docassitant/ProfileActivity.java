@@ -79,13 +79,15 @@ public class ProfileActivity extends AppCompatActivity {
                             name=dataSnapshot.child(user_id).child("name").getValue().toString();
                             bg=dataSnapshot.child(user_id).child("bg").getValue().toString();
                             gender=dataSnapshot.child(user_id).child("gender").getValue().toString();
-                            mobile_no="+91"+mobile_no;
                             alternate_mobile_no=dataSnapshot.child(user_id).child("alternate_mobile_no").getValue().toString();
                             setvalues();
+                        }else {
+                            System.out.println("new user1");
+                            user_count=(dataSnapshot.getChildrenCount());
                         }
                     }else {
+                        System.out.println("new user");
                         user_count=(dataSnapshot.getChildrenCount());
-                        getValues();
                     }
                 }
             }
@@ -99,11 +101,21 @@ public class ProfileActivity extends AppCompatActivity {
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getValues();
                 if(name != null || bg != null  || gender != null  || mobile_no != null || alternate_mobile_no != null){
                     Toast.makeText(ProfileActivity.this,"All fields are present",Toast.LENGTH_LONG).show();
                     if(user_id!=null){
-                        updatevalues();
+                        System.out.println("Comming");
+                        if(user_id!=""){
+                            System.out.println("HI");
+                            updatevalues();
+                        }
+                        else {
+                            System.out.println("hello1");
+                            addvalues();
+                        }
                     }else {
+                        System.out.println("hello");
                         addvalues();
                     }
                 }else {
@@ -149,7 +161,7 @@ public class ProfileActivity extends AppCompatActivity {
     private void getincommingintent() {
         Intent i=getIntent();
         mobile_no=i.getStringExtra("mobile");
-        //mob_no_txt.setText(mobile_no);
+        mob_no_txt.setText(mobile_no);
     }
 
     private void addvalues() {

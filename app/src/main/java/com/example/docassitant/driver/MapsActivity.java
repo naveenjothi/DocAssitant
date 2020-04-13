@@ -140,7 +140,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View view) {
                 driver_ref=FirebaseDatabase.getInstance().getReference().child("Drivers");
-                driver_ref.addValueEventListener(new ValueEventListener() {
+                driver_ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists()){
@@ -148,48 +148,36 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 if(snap.child("Patient_id").getValue().toString().equals(user_id)){
                                     driver_id=snap.getKey();
                                     System.out.println("driver_id"+driver_id);
-                                    if(driver_id!=null){
-                                        if(driver_id!=""){
-                                            driver_ref.child(driver_id).child("Accept_status").setValue(2).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if(task.isSuccessful()){
-                                                        arrived_layout.setVisibility(View.GONE);
-                                                        saved_layout.setVisibility(View.VISIBLE);
-                                                    }
-                                                }
-                                            });
-                                        }
-                                    }
                                 }
                             }
-
                         }
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
-                /*driver_ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                if(driver_id!=null){
+                    if(driver_id!=""){
+                        driver_ref.child(driver_id).child("Accept_status").setValue(2).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()){
+                                    arrived_layout.setVisibility(View.GONE);
+                                    saved_layout.setVisibility(View.VISIBLE);
+                                }
+                            }
+                        });
                     }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });*/
-
+                }
             }
         });
         saved_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dref=FirebaseDatabase.getInstance().getReference().child("Drivers");
-                dref.addValueEventListener(new ValueEventListener() {
+                dref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists()){
@@ -198,31 +186,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     cus_ref=FirebaseDatabase.getInstance().getReference().child("Users");
-                                    cus_ref.addValueEventListener(new ValueEventListener() {
+                                    cus_ref.child(user_id).child("emergency_status").setValue(0).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
-                                        public void onDataChange(@NonNull DataSnapshot dataSnapshots) {
-                                            if(dataSnapshots.exists()){
-                                                cus_ref.child(user_id).child("emergency_status").setValue(0).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                    @Override
-                                                    public void onSuccess(Void aVoid) {
-                                                        modallayout.setVisibility(View.VISIBLE);
-                                                        new Handler().postDelayed(new Runnable() {
-                                                            @Override
-                                                            public void run() {
-                                                                modallayout.setVisibility(View.GONE);
-                                                                Intent i= new Intent(MapsActivity.this,driver_MainActivity.class);
-                                                                startActivity(i);
-                                                                finish();
-                                                            }
-                                                        },SPLASH_TIME_OUT);
-                                                    }
-                                                });
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                                        public void onSuccess(Void aVoid) {
+                                            modallayout.setVisibility(View.VISIBLE);
+                                            new Handler().postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    modallayout.setVisibility(View.GONE);
+                                                    Intent i= new Intent(MapsActivity.this,driver_MainActivity.class);
+                                                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                    startActivity(i);
+                                                    finish();
+                                                }
+                                            },SPLASH_TIME_OUT);
                                         }
                                     });
                                 }
