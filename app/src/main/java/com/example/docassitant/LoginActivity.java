@@ -13,12 +13,15 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.docassitant.driver.driver_MainActivity;
 import com.example.docassitant.driver.driver_register;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -48,10 +51,17 @@ public class LoginActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private static final int REQUEST_CODE=101;
 
+    private AwesomeValidation credentials;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+//      Validations
+        credentials = new AwesomeValidation(ValidationStyle.BASIC);
+        credentials.addValidation(this, R.id.phone_no, Patterns.EMAIL_ADDRESS, R.string.emailerror);
+        credentials.addValidation(this, R.id.password, "(?=.{8,})", R.string.passworderror);
 
         mTopToolbar = (Toolbar) findViewById(R.id.toolbar);
         mTopToolbar.setTitle("");
@@ -90,8 +100,8 @@ public class LoginActivity extends AppCompatActivity {
                 lastClickTime = SystemClock.elapsedRealtime();
                 String txt_email = email.getText().toString().trim();
                 String txt_password = password.getText().toString().trim();
-                if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)) {
-                    Toast.makeText(LoginActivity.this, "All fileds are required", Toast.LENGTH_SHORT).show();
+                if (!(credentials.validate())) {
+                    Toast.makeText(LoginActivity.this, "Fill the fields", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(LoginActivity.this, txt_email+"<<<>>>"+txt_password, Toast.LENGTH_SHORT).show();
                     auth.signInWithEmailAndPassword(txt_email, txt_password)
@@ -130,6 +140,7 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
     @Override
     protected void onStart() {

@@ -5,167 +5,216 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
             android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimaryDark"
             android:elevation="10dp"
             android:gravity="center_horizontal"
-            app:titleTextColor="@android:color/white"
-            android:layout_height="?attr/actionBarSize">
+            app:titleTextColor="@android:color/white">
+
             <TextView
+                android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="Toolbar Title"
                 android:textColor="@android:color/white"
-                android:textStyle="bold"
                 android:textSize="20sp"
-                android:layout_gravity="center"
-                android:id="@+id/toolbar_title" />
+                android:textStyle="bold" />
         </androidx.appcompat.widget.Toolbar>
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_below="@id/toolbar"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar">
+
             <ImageView
                 android:layout_width="wrap_content"
-                android:alpha="0.2"
-                android:src="@drawable/ic_docsym"
-                android:layout_marginRight="40sp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="40sp"
-                android:layout_height="wrap_content">
-            </ImageView>
+                android:layout_marginRight="40sp"
+                android:alpha="0.2"
+                android:src="@drawable/ic_docsym"></ImageView>
+
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content"
                 android:layout_above="@id/register_name_layout"
-                android:layout_marginVertical="15dp"
-                android:layout_height="wrap_content">
+                android:layout_centerHorizontal="true"
+                android:layout_marginVertical="15dp">
+
                 <TextView
                     android:layout_width="wrap_content"
-                    android:text="Create your account"
+                    android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:textSize="25dp"
+                    android:text="Create your account"
                     android:textColor="@color/colorPrimaryDark"
-                    android:layout_height="wrap_content">
-                </TextView>
+                    android:textSize="25dp"></TextView>
             </RelativeLayout>
+
             <RelativeLayout
-                android:layout_width="wrap_content"
                 android:id="@+id/register_name_layout"
-                android:layout_marginVertical="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_above="@id/register_blood_group_layout"
+                android:layout_marginVertical="15dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:elevation="10dp"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/register_name"
-                    android:inputType="text"
-                    android:textColor="@color/colorPrimaryDark"
+                android:elevation="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outlinedTextField"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:hint="Enter name"
-                    android:layout_marginLeft="10dp"
-                    android:layout_height="50sp"
-                    >
-                </EditText>
+                    android:layout_height="wrap_content"
+                    android:hint="Enter name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/register_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                </com.google.android.material.textfield.TextInputLayout>
             </RelativeLayout>
+
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:layout_above="@id/register_gender_layout"
-                android:layout_marginLeft="40dp"
                 android:id="@+id/register_blood_group_layout"
-                android:layout_marginRight="40dp"
-                android:elevation="10dp"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/register_blood_group"
-                    android:hint="Blood group"
-                    android:layout_marginLeft="10dp"
-                    android:layout_height="50sp"
-                    >
-                </EditText>
-            </RelativeLayout>
-            <RelativeLayout
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/register_gender_layout"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:elevation="10dp">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Blood group">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/register_blood_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/register_gender_layout"
-                android:layout_marginVertical="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_above="@id/register_phone_no_layout"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:elevation="10dp"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:inputType="text"
-                    android:id="@+id/register_gender"
-                    android:hint="gender"
-                    android:layout_marginLeft="10dp"
-                    android:layout_height="50sp"
-                    >
-                </EditText>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_centerInParent="true"
-                android:id="@+id/register_phone_no_layout"
                 android:layout_marginVertical="10dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:elevation="10dp"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/register_phone_no"
-                    android:inputType="phone"
-                    android:textColor="@color/colorPrimaryDark"
+                android:elevation="10dp">
+
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:hint="Enter mobile number"
-                    android:layout_marginLeft="10dp"
-                    android:layout_height="50sp"
-                    >
-                </EditText>
+                    android:layout_height="wrap_content"
+                    android:hint="Gender">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/register_gender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
             </RelativeLayout>
+
             <RelativeLayout
+                android:id="@+id/register_phone_no_layout"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:elevation="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter mobile number">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/register_phone_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/register_alternate_phone_no_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/register_phone_no_layout"
                 android:layout_marginVertical="10dp"
-                android:id="@+id/register_alternate_phone_no_layout"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:elevation="10dp"
-                android:layout_height="wrap_content">
-                <EditText
+                android:elevation="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:inputType="phone"
-                    android:id="@+id/register_alternate_phone_no"
-                    android:hint="Enter alternate number"
-                    android:layout_marginLeft="10dp"
-                    android:layout_height="50sp"
-                    >
-                </EditText>
+                    android:layout_height="wrap_content"
+                    android:hint="Enter alternate number">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/register_alternate_phone_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
             </RelativeLayout>
+
             <RelativeLayout
-                android:layout_width="140dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:layout_alignParentBottom="true"
-                android:layout_margin="20dp"
-                android:layout_alignParentRight="true"
-                android:layout_height="50dp">
+                android:layout_marginBottom="40dp"
+                android:gravity="center_horizontal">
+
                 <Button
-                    android:layout_width="match_parent"
-                    android:text="Submit"
                     android:id="@+id/register_submit_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@drawable/btn_border"
+                    android:paddingHorizontal="50dp"
+                    android:text="Submit"
                     android:textColor="@android:color/white"
-                    android:layout_height="match_parent">
-                </Button>
+                    android:textSize="18sp"></Button>
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>

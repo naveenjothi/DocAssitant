@@ -5,183 +5,235 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".driver.driver_register">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
             android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:background="@color/colorPrimaryDark"
             android:elevation="10dp"
             android:gravity="center_horizontal"
-            app:titleTextColor="@android:color/white"
-            android:layout_height="?attr/actionBarSize">
+            app:titleTextColor="@android:color/white">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Toolbar Title"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <RelativeLayout
+            android:id="@+id/welcome_driver_layout"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@id/toolbar"
+            android:background="@color/colorPrimary">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Toolbar Title"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:id="@+id/toolbar_title" />
-        </androidx.appcompat.widget.Toolbar>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:id="@+id/welcome_driver_layout"
-            android:background="@color/colorPrimary"
-            android:layout_below="@id/toolbar"
-            android:layout_height="130dp">
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="Welcome Driver"
                 android:textColor="@android:color/white"
-                android:textSize="30sp"
-                android:layout_height="wrap_content">
+                android:textSize="30sp">
 
             </TextView>
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_below="@id/welcome_driver_layout"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@id/welcome_driver_layout">
+
             <ImageView
                 android:layout_width="wrap_content"
-                android:alpha="0.2"
-                android:src="@drawable/ic_docsym"
-                android:layout_marginRight="40sp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="40sp"
-                android:layout_height="wrap_content">
-            </ImageView>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_above="@id/register_name_layout"
-                android:layout_marginVertical="35dp"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:text="Create your account"
-                    android:padding="10dp"
-                    android:textSize="25dp"
-                    android:layout_height="wrap_content">
-                </TextView>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:id="@+id/register_name_layout"
-                android:layout_marginVertical="15dp"
-                android:layout_above="@id/register_phone_no_layout"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:elevation="10dp"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/driver_register_name"
-                    android:inputType="text"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:layout_width="match_parent"
-                    android:hint="Enter name"
-                    android:layout_marginLeft="10dp"
-                    android:layout_height="50sp"
-                    >
-                </EditText>
-            </RelativeLayout>
+                android:layout_marginRight="40sp"
+                android:alpha="0.2"
+                android:src="@drawable/ic_docsym"></ImageView>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_height="wrap_content"
+                android:id="@+id/warm_text"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Create your account"
+                    android:textSize="25dp"></TextView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/register_name_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/warm_text"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginRight="40dp"
+                android:elevation="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/outlinedTextField"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:hint="Enter name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/driver_register_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:textSize="14sp"
+                        android:inputType="text"
+                        android:textColor="@color/colorPrimaryDark" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:id="@+id/register_phone_no_layout"
-                android:layout_marginVertical="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/register_name_layout"
+                android:layout_centerInParent="true"
+                android:layout_marginVertical="15dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:elevation="10dp"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/driver_register_phone_no"
-                    android:inputType="phone"
-                    android:textColor="@color/colorPrimaryDark"
+                android:elevation="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:hint="Enter mobile number"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_height="50sp"
-                    >
-                </EditText>
+                    android:hint="Enter mobile number">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/driver_register_phone_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimaryDark" />
+                </com.google.android.material.textfield.TextInputLayout>
             </RelativeLayout>
+
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_below="@+id/register_phone_no_layout"
                 android:id="@+id/register_email_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/register_phone_no_layout"
                 android:layout_marginVertical="10dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:elevation="10dp"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/driver_register_email"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/colorPrimaryDark"
+                android:elevation="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:hint="Enter email id"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_height="50sp"
-                    >
-                </EditText>
+                    android:hint="Enter email id">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/driver_register_email"
+                        android:layout_width="match_parent"
+                        android:textSize="14sp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/colorPrimaryDark" />
+                </com.google.android.material.textfield.TextInputLayout>
             </RelativeLayout>
+
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:layout_below="@id/register_email_layout"
                 android:id="@+id/register_password_layout"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:elevation="10dp"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:id="@+id/driver_register_password"
-                    android:inputType="textPassword"
-                    android:hint="create password"
-                    android:layout_marginLeft="10dp"
-                    android:layout_height="50sp"
-                    >
-                </EditText>
-            </RelativeLayout>
-            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:id="@+id/register_confirm_pass_layout"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/register_email_layout"
                 android:layout_marginVertical="10dp"
-                android:layout_below="@id/register_password_layout"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
-                android:elevation="10dp"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:id="@+id/driver_register_confirm_pass"
-                    android:textColor="@color/colorPrimaryDark"
+                android:elevation="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:hint="confirm password"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_height="50sp"
-                    >
-                </EditText>
+                    android:hint="create password">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/driver_register_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:inputType="textPassword"
+                        android:textColor="@color/colorPrimaryDark" />
+                </com.google.android.material.textfield.TextInputLayout>
             </RelativeLayout>
+
             <RelativeLayout
-                android:layout_width="140dp"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="20dp"
-                android:layout_alignParentRight="true"
-                android:layout_height="50dp">
-                <Button
+                android:id="@+id/register_confirm_pass_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/register_password_layout"
+                android:layout_marginVertical="10dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:elevation="10dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:text="Submit"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="10dp"
+                    android:hint="confirm password">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/driver_register_confirm_pass"
+                        android:layout_width="match_parent"
+                        android:textSize="14sp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:textColor="@color/colorPrimaryDark" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/submit_btn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="30dp"
+                android:layout_marginHorizontal="20dp"
+                android:gravity="center_horizontal">
+
+                <Button
                     android:id="@+id/driver_register_submit_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@drawable/btn_border"
+                    android:gravity="center"
+                    android:paddingHorizontal="40dp"
+                    android:text="Submit"
                     android:textColor="@android:color/white"
-                    android:layout_height="match_parent">
-                </Button>
+                    android:textSize="18dp"></Button>
             </RelativeLayout>
         </RelativeLayout>
 

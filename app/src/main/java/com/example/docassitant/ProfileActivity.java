@@ -6,12 +6,18 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.service.autofill.RegexValidator;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.google.common.collect.Range;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,12 +34,22 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private long user_count=0;
     private String user_id;
+    private AwesomeValidation cred;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        //Toolbar content
+
+//      Credential Validation
+        cred = new AwesomeValidation(ValidationStyle.BASIC);
+        cred.addValidation(this, R.id.register_name, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
+        cred.addValidation(this, R.id.register_blood_group, RegexTemplate.NOT_EMPTY, R.string.commonerror);
+        cred.addValidation(this, R.id.register_gender, RegexTemplate.NOT_EMPTY, R.string.commonerror);
+        cred.addValidation(this, R.id.register_phone_no, "^[2-9]{2}[0-9]{8}$", R.string.mobileerror);
+        cred.addValidation(this, R.id.register_alternate_phone_no, "^[2-9]{2}[0-9]{8}$", R.string.mobileerror);
+
+        // Toolbar content
         mTopToolbar = (Toolbar) findViewById(R.id.toolbar);
         mTopToolbar.setTitle("");
         setSupportActionBar(mTopToolbar);
@@ -102,8 +118,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getValues();
-                if(name != null || bg != null  || gender != null  || mobile_no != null || alternate_mobile_no != null){
-                    Toast.makeText(ProfileActivity.this,"All fields are present",Toast.LENGTH_LONG).show();
+                if(cred.validate()){
                     if(user_id!=null){
                         System.out.println("Comming");
                         if(user_id!=""){

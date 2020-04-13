@@ -8,7 +8,8 @@
     tools:context=".MainActivity">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#8C000000">
         <ImageView
             android:layout_width="180dp"
             android:id="@+id/imageview"
@@ -29,26 +30,30 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:id="@+id/dvr_login"
-            android:layout_margin="20dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="40dp"
             android:layout_width="wrap_content"
             android:textAllCaps="false"
             android:text="Driver Login"
-            android:padding="17dp"
+            android:padding="13dp"
             android:textColor="@android:color/white"
-            android:textSize="25dp"
-            android:background="@color/colorPrimaryDark">
+            android:textSize="18dp"
+            android:elevation="10dp"
+            android:background="@drawable/main_button">
         </Button>
         <Button
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:id="@+id/usr_login"
-            android:background="@color/colorPrimaryDark"
+            android:elevation="10dp"
+            android:background="@drawable/main_button"
             android:layout_alignParentBottom="true"
-            android:padding="17dp"
+            android:padding="13dp"
             android:textAllCaps="false"
-            android:textSize="25dp"
+            android:textSize="18dp"
             android:textColor="@android:color/white"
-            android:layout_margin="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="40dp"
             android:text="User Login"
             android:layout_alignParentRight="true">
 
